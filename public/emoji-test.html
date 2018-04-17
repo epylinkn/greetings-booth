@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Greetings - Emoji Picker</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery.emojipicker.css">
+    <script type="text/javascript" src="assets/js/jquery.emojipicker.js"></script>
+
+    <!-- Emoji Data -->
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery.emojipicker.a.css">
+    <script type="text/javascript" src="assets/js/jquery.emojis.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function(e) {
+        $('#input-field').emojiPicker({
+          width: '400px',
+          height: '300px',
+          button: false
+        });
+
+        $('#input-field').click(function(e) {
+          e.preventDefault();
+          $('#input-field').emojiPicker('toggle');
+        });
+      });
+    </script>
+
+    <style type="text/css">
+      body {background:#888;}
+      form {margin:200px 0 0 0; text-align:center;}
+      input {width:400px; height:30px; padding:5px 10px; font-family:"Helvetica Neue", "Helvetica", "Arial", sans-serif; font-size:24px; font-weight:300; outline:none; border:none;}
+      #emojiPickerWrap {margin:10px 0 0 0;}
+    </style>
+
+  </head>
+  <body>
+    <br />
+    <form>
+      <div class="field" style="">
+        <input id="input-field" placeholder="Put emojis in me">
+      </div>
+    </form>
+  </body>
+</html>
