@@ -1,5 +1,7 @@
 let mgr
 let colors
+let rightPlayer = {}
+let leftPlayer = {}
 
 function preload() {
   roboto = loadFont('assets/fonts/RobotoMono.ttf')
@@ -26,9 +28,10 @@ function setup() {
   mgr.addScene(Prediction)
   mgr.addScene(Interaction)
   mgr.addScene(Impression)
+  mgr.addScene(SlowMotion)
   mgr.addScene(Takeaway)
 
-  mgr.showScene(Debug)
+  mgr.showScene(Title)
 }
 
 function draw() {
@@ -61,7 +64,13 @@ function keyPressed() {
       mgr.showScene(Impression)
       break
     case '6':
+      mgr.showScene(SlowMotion)
+      break
+    case '7':
       mgr.showScene(Takeaway)
+      break
+    case ' ':
+      mgr.showNextScene()
       break
   }
 

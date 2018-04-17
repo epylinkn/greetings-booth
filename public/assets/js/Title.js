@@ -2,6 +2,6 @@ class Title {
   draw() {
     background(colors.background)
 
-    displayTitle('Greetings Booth')
+    displayTitle('Welcome to the Greeting Booth!')
   }
 }

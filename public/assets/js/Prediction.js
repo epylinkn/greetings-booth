@@ -2,6 +2,16 @@ class Prediction {
   draw() {
     background(colors.background)
 
-    displayTitle('Prediction')
+    if (leftPlayer.status == 'predicted') {
+      displayLeftTitle('Waiting for your friend')
+    } else {
+      displayLeftTitle('Please follow the instructions\n at your Kiosk')
+    }
+
+    if (rightPlayer.status == 'predicted') {
+      displayLeftTitle('Waiting for your friend')
+    } else {
+      displayRightTitle('Please follow the instructions\n at your Kiosk')
+    }
   }
 }
