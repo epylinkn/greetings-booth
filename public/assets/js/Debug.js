@@ -1,6 +1,6 @@
 class Debug {
   draw() {
-    background(0)
+    background('magenta')
 
     if (millis() < lastToastAt) {
       displayTitle(toast)

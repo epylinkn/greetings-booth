@@ -1,4 +1,5 @@
 let mgr
+let colors
 
 function preload() {
   roboto = loadFont('assets/fonts/RobotoMono.ttf')
@@ -10,6 +11,12 @@ function setup() {
   textAlign(CENTER, CENTER)
   textFont(roboto)
   textSize(24)
+
+  colors = {
+    primary: color("#C0FFEE"),
+    secondary: color("#FFCCC0"),
+    background: color("#16161D"),
+  }
 
   mgr = new SceneManager()
   // Preload scenes

@@ -1,6 +1,7 @@
 class Title {
   draw() {
-    background('#c0ffee')
+    background(colors.background)
+
     displayTitle('Greetings Booth')
   }
 }
