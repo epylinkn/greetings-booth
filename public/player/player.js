@@ -64,7 +64,7 @@ function mousePressed() {
 }
 
 function keyPressed() {
-  if (blockKeypress) return;
+  if (blockKeypress) return
 
   switch (key) {
     //== Scenes

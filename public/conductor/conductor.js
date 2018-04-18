@@ -57,8 +57,8 @@ function setup() {
   })
 
   socket.on('state_updated', function(updatedGameState) {
-    gameState = updatedGameState;
-    console.log(gameState);
+    gameState = updatedGameState
+    console.log(gameState)
 
     for (let key in gameState) {
       if (gameState[key].player == 'left') {

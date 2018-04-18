@@ -16,8 +16,24 @@ class Impression extends GenericScene {
         displayTitle('That was interesting.\n What happened?')
         break
       default:
-        displayLeftTitle('Please follow the instructions\n at your Kiosk')
-        displayRightTitle('Please follow the instructions\n at your Kiosk')
+        if (
+          gameState[leftPlayerId].impressions &&
+          gameState[rightPlayerId].impressions
+        ) {
+          this.sceneManager.showNextScene()
+        }
+
+        if (gameState[leftPlayerId].impressions) {
+          displayLeftTitle('Waiting for your friend')
+        } else {
+          displayLeftTitle('Please follow the instructions\n at your Kiosk')
+        }
+
+        if (gameState[rightPlayerId].impressions) {
+          displayRightTitle('Waiting for your friend')
+        } else {
+          displayRightTitle('Please follow the instructions\n at your Kiosk')
+        }
     }
   }
 }

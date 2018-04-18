@@ -34,11 +34,11 @@ player.on('connection', function(socket) {
   // NB. First to connect is left player
   if (Object.keys(gameState).length == 0) {
     gameState[socket.id] = {
-      player: "left",
+      player: 'left',
     }
   } else {
     gameState[socket.id] = {
-      player: (Object.values(gameState)[0].player == 'left') ? 'right' : 'left',
+      player: Object.values(gameState)[0].player == 'left' ? 'right' : 'left',
     }
   }
   conductor.emit('state_updated', gameState)
@@ -57,18 +57,21 @@ player.on('connection', function(socket) {
     let player = gameState[socket.id]
 
     player.predictions = {
-      expectationSelf: prediction.expectationSelf,
-      expectationFriend: prediction.expectationFriend
+      self: prediction.self,
+      friend: prediction.friend,
     }
 
     conductor.emit('state_updated', gameState)
   })
 
-  socket.on('player_impressions', function(impressions) {
-    // TODO
+  socket.on('player_impression', function(impression) {
+    let player = gameState[socket.id]
 
-    let payload = {}
+    player.impressions = {
+      leader: impression.leader,
+      awkward: impression.awkward,
+    }
 
-    conductor.emit('player_impressions', payload)
+    conductor.emit('state_updated', gameState)
   })
 })

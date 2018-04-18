@@ -2,7 +2,10 @@ class Prediction extends GenericScene {
   draw() {
     background(colors.background)
 
-    if (gameState[leftPlayerId].predictions && gameState[rightPlayerId].predictions) {
+    if (
+      gameState[leftPlayerId].predictions &&
+      gameState[rightPlayerId].predictions
+    ) {
       this.sceneManager.showNextScene()
     }
 
