@@ -1,4 +1,4 @@
-class Prediction {
+class Prediction extends GenericScene {
   draw() {
     background(colors.background)
 

@@ -1,3 +1,8 @@
+let socket = io('/conductor')
+socket.on('connect', function() {
+  console.log('Connected')
+})
+
 let mgr
 let colors
 let rightPlayer = {}
@@ -22,7 +27,6 @@ function setup() {
 
   mgr = new SceneManager()
   // Preload scenes
-  mgr.addScene(Debug)
   mgr.addScene(Title)
   mgr.addScene(Setup)
   mgr.addScene(Prediction)

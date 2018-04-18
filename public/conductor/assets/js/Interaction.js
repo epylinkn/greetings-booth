@@ -1,4 +1,4 @@
-class Interaction {
+class Interaction extends GenericScene {
   setup() {
     this.constructedAt = second()
   }

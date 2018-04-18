@@ -1,5 +1,5 @@
-class Setup {
-  constructor() {
+class Setup extends GenericScene {
+  setup() {
     this.titles = [
       'Over the next two minutes, we invite you to explore\n the subtle art of greeting another person...',
       'without words.',

@@ -1,4 +1,4 @@
-class Impression {
+class Impression extends GenericScene {
   setup() {
     this.constructedAt = second()
   }

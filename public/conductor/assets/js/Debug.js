@@ -1,4 +1,4 @@
-class Debug {
+class Debug extends GenericScene {
   draw() {
     background('magenta')
 
