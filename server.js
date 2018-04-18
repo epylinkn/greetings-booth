@@ -35,6 +35,11 @@ player.on('connection', function(socket) {
     io.sockets.emit('disconnected', socket.id)
   })
 
+  socket.on('scene', function(sceneName) {
+    console.log('scene', sceneName)
+    conductor.emit('scene', sceneName)
+  })
+
   socket.on('player_predictions', function(prediction) {
     // TODO
 
