@@ -6,13 +6,13 @@ socket.on('connect', function() {
 // NB. Manual dictionary b/c AFAIK there isn't a great way to get a
 //     class reference from a string, e.g. get Title from "Title"
 let classLookup = {
-  'Title': Title,
-  'Setup': Setup,
-  'Prediction': Prediction,
-  'Interaction': Interaction,
-  'Impression': Impression,
-  'SlowMotion': SlowMotion,
-  'Takeaway': Takeaway
+  Title: Title,
+  Setup: Setup,
+  Prediction: Prediction,
+  Interaction: Interaction,
+  Impression: Impression,
+  SlowMotion: SlowMotion,
+  Takeaway: Takeaway,
 }
 
 let mgr
