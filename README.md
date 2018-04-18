@@ -17,5 +17,5 @@ npm start       # or node server.js
 Authors
 -------
 
-- Nick ([ntwallace](https://github.com/ntwallace)
-- Anthony ([epylinkn](https://github.com/epylinkn)
+- Nick ([ntwallace](https://github.com/ntwallace))
+- Anthony ([epylinkn](https://github.com/epylinkn))
