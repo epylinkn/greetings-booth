@@ -17,8 +17,9 @@ let classLookup = {
 
 let mgr
 let colors
-let rightPlayer = {}
-let leftPlayer = {}
+let gameState = {}
+let leftPlayerId
+let rightPlayerId
 
 function preload() {
   roboto = loadFont('assets/fonts/RobotoMono.ttf')
@@ -53,6 +54,19 @@ function setup() {
     if (mgr.isCurrent(classLookup[sceneName])) return
 
     mgr.showScene(classLookup[sceneName])
+  })
+
+  socket.on('state_updated', function(updatedGameState) {
+    gameState = updatedGameState;
+    console.log(gameState);
+
+    for (let key in gameState) {
+      if (gameState[key].player == 'left') {
+        leftPlayerId = key
+      } else {
+        rightPlayerId = key
+      }
+    }
   })
 }
 

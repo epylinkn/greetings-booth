@@ -11,6 +11,8 @@ let server = require('http')
 app.use(express.static('public'))
 app.use('/scripts', express.static(__dirname + '/node_modules/'))
 
+let gameState = {}
+
 let io = require('socket.io').listen(server)
 let conductor = io.of('/conductor')
 let player = io.of('/player')
@@ -18,9 +20,7 @@ let player = io.of('/player')
 conductor.on('connection', function(socket) {
   console.log('We have a new client: ' + socket.id)
 
-  socket.on('disconnect', function() {
-    io.sockets.emit('disconnected', socket.id)
-  })
+  conductor.emit('state_updated', gameState)
 
   socket.on('scene', function(sceneName) {
     console.log('scene', sceneName)
@@ -31,8 +31,21 @@ conductor.on('connection', function(socket) {
 player.on('connection', function(socket) {
   console.log('We have a new client: ' + socket.id)
 
+  // NB. First to connect is left player
+  if (Object.keys(gameState).length == 0) {
+    gameState[socket.id] = {
+      player: "left",
+    }
+  } else {
+    gameState[socket.id] = {
+      player: (Object.values(gameState)[0].player == 'left') ? 'right' : 'left',
+    }
+  }
+  conductor.emit('state_updated', gameState)
+
   socket.on('disconnect', function() {
-    io.sockets.emit('disconnected', socket.id)
+    delete gameState[socket.id]
+    conductor.emit('state_updated', gameState)
   })
 
   socket.on('scene', function(sceneName) {
@@ -40,12 +53,15 @@ player.on('connection', function(socket) {
     conductor.emit('scene', sceneName)
   })
 
-  socket.on('player_predictions', function(prediction) {
-    // TODO
+  socket.on('player_prediction', function(prediction) {
+    let player = gameState[socket.id]
 
-    let payload = {}
+    player.predictions = {
+      expectationSelf: prediction.expectationSelf,
+      expectationFriend: prediction.expectationFriend
+    }
 
-    conductor.emit('player_predictions', payload)
+    conductor.emit('state_updated', gameState)
   })
 
   socket.on('player_impressions', function(impressions) {

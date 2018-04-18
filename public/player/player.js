@@ -14,6 +14,7 @@ let classLookup = {
   SlowMotion: SlowMotion,
   Takeaway: Takeaway,
 }
+let blockKeypress = false
 
 let mgr
 let colors
@@ -63,6 +64,8 @@ function mousePressed() {
 }
 
 function keyPressed() {
+  if (blockKeypress) return;
+
   switch (key) {
     //== Scenes
     case '0':

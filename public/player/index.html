@@ -5,6 +5,7 @@
 
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="/scripts/p5/lib/p5.min.js"></script>
+    <script type-"text/javascript" src="/scripts/p5/lib/addons/p5.dom.min.js"></script>
     <script type-"text/javascript" src="/scripts/p5/lib/addons/p5.sound.min.js"></script>
     <script type="text/javascript" src="assets/js/lib/p5.scenemanager.js"></script>
     <script type="text/javascript" src="/utils.js"></script>
@@ -18,10 +19,26 @@
     <script type="text/javascript" src="assets/js/SlowMotion.js"></script>
     <script type="text/javascript" src="assets/js/Takeaway.js"></script>
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
   </head>
   <body>
+    <div class="predictions-form">
+      <div class="form-group">
+        <label for="expectation-self">How would your greet your friend, without speaking?</label>
+        <input id="expectation-self" type="text" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="expectation-friend">How do you expect your friend to greet you?</label>
+        <input id="expectation-friend" type="text" class="form-control" />
+      </div>
+
+      <button id="predictions-submit" type="submit" class="btn btn-primary">
+        Submit
+      </button>
+    </div>
+
     <script src="player.js"></script>
   </body>
 </html>
