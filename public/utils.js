@@ -64,3 +64,39 @@ function displayTitles(titles) {
 
   pop()
 }
+
+function displayLeftTitles(titles) {
+  push()
+
+  rectMode(CORNER)
+  fill('white')
+  textAlign(CENTER, CENTER)
+
+  for (let i = 0; i < titles.length; i++) {
+    // (i == 0) ? textSize(64) : textSize(32)
+    textSize(32)
+
+    let shift = i - titles.length / 2
+    text(titles[i], 0, height / 2 + shift * 100, width / 2, 100)
+  }
+
+  pop()
+}
+
+function displayRightTitles(titles) {
+  push()
+
+  rectMode(CORNER)
+  fill('white')
+  textAlign(CENTER, CENTER)
+
+  for (let i = 0; i < titles.length; i++) {
+    // (i == 0) ? textSize(64) : textSize(32)
+    textSize(32)
+
+    let shift = i - titles.length / 2
+    text(titles[i], width / 2, height / 2 + shift * 100, width / 2, 100)
+  }
+
+  pop()
+}
