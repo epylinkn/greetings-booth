@@ -4,7 +4,8 @@ html, body {
   background-color: black;
 }
 
-.predictions-form {
+.predictions-form-1,
+.predictions-form-2 {
   display: none;
   position: absolute;
   top: 0;
@@ -13,7 +14,7 @@ html, body {
   bottom: 0;
 
   text-align: center;
-  font-size: 64px;
+  font-size: 32px;
   font-family: Roboto, sans-serif;
 }
 
@@ -30,15 +31,15 @@ input {
   display: block;
   width: 80%;
   margin: 5% auto;
-  font-size: 64px;
+  font-size: 32px;
 }
 
 button {
   display: block;
   width: 80%;
-  height: 100px;
+  height: 50px;
   margin: 0 auto;
-  font-size: 64px;
+  font-size: 32px;
 }
 
 .impressions-form {
@@ -50,6 +51,6 @@ button {
   bottom: 0;
 
   text-align: center;
-  font-size: 64px;
+  font-size: 32px;
   font-family: Roboto, sans-serif;
 }

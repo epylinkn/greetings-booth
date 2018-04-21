@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
 
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type-"text/javascript" src="/scripts/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="/scripts/p5/lib/p5.min.js"></script>
     <script type-"text/javascript" src="/scripts/p5/lib/addons/p5.dom.min.js"></script>
     <script type-"text/javascript" src="/scripts/p5/lib/addons/p5.sound.min.js"></script>
@@ -19,16 +20,50 @@
     <script type="text/javascript" src="assets/js/SlowMotion.js"></script>
     <script type="text/javascript" src="assets/js/Takeaway.js"></script>
 
+    <script type="text/javascript">
+      let prediction_submitted;
+
+      $(document).ready(function() {
+        $('.predictions-form-1').submit(function(event) {
+          event.preventDefault()
+
+          $(this).hide();
+          $('.predictions-form-2').show()
+          $('#predictions-friend').focus()
+        })
+
+        $('.predictions-form-2').submit(function(event) {
+          event.preventDefault()
+
+          socket.emit('player_prediction', {
+            self: $("#predictions-self").val(),
+            friend: $("#predictions-friend").val(),
+          })
+
+          $(this).hide();
+          blockKeypress = false
+          prediction_submitted = true;
+        })
+      })
+    </script>
+
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
   </head>
+
   <body>
-    <div class="predictions-form">
+    <form class="predictions-form-1">
       <div class="form-group">
-        <label for="predictions-self">How would your greet your friend, without speaking?</label>
+        <label for="predictions-self">How would your greet your friend, nonverbally?</label>
         <input id="predictions-self" type="text" class="form-control" />
       </div>
 
+      <button id="predictions-next" type="submit" class="btn btn-primary">
+        Next
+      </button>
+    </form>
+
+    <form class="predictions-form-2">
       <div class="form-group">
         <label for="predictions-friend">How do you expect your friend to greet you?</label>
         <input id="predictions-friend" type="text" class="form-control" />
@@ -37,7 +72,7 @@
       <button id="predictions-submit" type="submit" class="btn btn-primary">
         Submit
       </button>
-    </div>
+    </form>
 
     <div class="impressions-form">
       <div class="form-group">
