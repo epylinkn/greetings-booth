@@ -47,11 +47,13 @@ function SceneManager(p) {
       oScene: oScene,
       hasSetup: 'setup' in oScene,
       hasEnter: 'enter' in oScene,
+      hasLeave: 'leave' in oScene,
       hasDraw: 'draw' in oScene,
       hasMousePressed: 'mousePressed' in oScene,
       hasKeyPressed: 'keyPressed' in oScene,
       setupExecuted: false,
       enterExecuted: false,
+      leaveExecuted: false,
     }
 
     this.scenes.push(o)
@@ -89,8 +91,15 @@ function SceneManager(p) {
 
     if (o == null) o = this.addScene(fnScene)
 
+    // Trigger leave
+    if (this.scene != null && this.scene.hasLeave && !this.scene.leaveExecuted) {
+      this.scene.oScene.leave()
+      this.scene.leaveExecuted = true
+    }
+
     // Re-arm the enter function at each show of the scene
     o.enterExecuted = false
+    o.leaveExecuted = false
 
     this.scene = o
 
@@ -155,6 +164,14 @@ function SceneManager(p) {
 
     if (this.scene.hasKeyPressed) {
       this.scene.oScene.keyPressed()
+    }
+  }
+
+  this.touchMoved = function() {
+    if (this.scene == null) return
+
+    if ('touchMoved' in this.scene.oScene) {
+      this.scene.oScene.touchMoved()
     }
   }
 }
