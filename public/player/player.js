@@ -11,6 +11,7 @@ let classLookup = {
   Prediction: Prediction,
   Interaction: Interaction,
   InputUncertainty: InputUncertainty,
+  InputEmoji: InputEmoji,
   Impression: Impression,
   SlowMotion: SlowMotion,
   Takeaway: Takeaway,
