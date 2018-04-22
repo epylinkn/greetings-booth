@@ -10,6 +10,7 @@ let classLookup = {
   Setup: Setup,
   Prediction: Prediction,
   Interaction: Interaction,
+  InputUncertainty: InputUncertainty,
   Impression: Impression,
   SlowMotion: SlowMotion,
   Takeaway: Takeaway,
@@ -18,9 +19,11 @@ let blockKeypress = false
 
 let mgr
 let colors
+let fingerImg
 
 function preload() {
   roboto = loadFont('assets/fonts/RobotoMono.ttf')
+  fingerImg = loadImage('assets/images/finger.png');
 }
 
 function setup() {
@@ -38,15 +41,11 @@ function setup() {
 
   mgr = new SceneManager()
   // Preload scenes
-  mgr.addScene(Title)
-  mgr.addScene(Setup)
-  mgr.addScene(Prediction)
-  mgr.addScene(Interaction)
-  mgr.addScene(Impression)
-  mgr.addScene(SlowMotion)
-  mgr.addScene(Takeaway)
+  for (let key in classLookup) {
+    mgr.addScene(classLookup[key])
+  }
 
-  mgr.showScene(Title)
+  mgr.showScene(InputUncertainty)
 
   socket.on('scene', function(sceneName) {
     if (mgr.isCurrent(classLookup[sceneName])) return
@@ -63,6 +62,12 @@ function mousePressed() {
   mgr.mousePressed()
 }
 
+function touchMoved() {
+  mgr.touchMoved()
+}
+
+
+
 function keyPressed() {
   if (blockKeypress) return
 
@@ -71,30 +76,21 @@ function keyPressed() {
     case '0':
       mgr.showScene(Debug)
       break
-    case '1':
-      mgr.showScene(Title)
-      break
-    case '2':
-      mgr.showScene(Setup)
-      break
-    case '3':
-      mgr.showScene(Prediction)
-      break
-    case '4':
-      mgr.showScene(Interaction)
-      break
-    case '5':
-      mgr.showScene(Impression)
-      break
-    case '6':
-      mgr.showScene(SlowMotion)
-      break
-    case '7':
-      mgr.showScene(Takeaway)
-      break
     case ' ':
       mgr.showNextScene()
       break
+    case '1':
+    case '2':
+    case '3':
+    case '4':
+    case '5':
+    case '6':
+    case '7':
+    case '8':
+    case '9':
+      let scene = Object.values(classLookup)[parseInt(key)]
+      mgr.showScene(scene)
+      break;
   }
 
   // dispatch via the SceneManager
